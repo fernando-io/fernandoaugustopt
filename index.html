@@ -245,7 +245,7 @@
                 </ul>
             </li>
             <li class="footer-right">
-                <h4 class="footer-heading">Endereço</h4>
+                <h4 class="footer-heading">Contatos</h4>
                 <hr class="footer-divider">
                 <ul class="footer-address">
                     <li><i class="fas fa-map-marker-alt"></i>R. do Uruguai, 286 - Jaraguá, Maceió</li>
@@ -271,13 +271,27 @@
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        // Hamburger
         $(document).ready(function () {
+            // Hamburger
             $(".hamburger").click(function () {
-                $(".nav").toggleClass("open")
-                $(this).toggleClass("active")
-            })
-        })
+                $(".nav").toggleClass("open");
+                $(this).toggleClass("active");
+            });
+
+            // Close menu on link click
+            $(".nav ul li a").click(function () {
+                $(".nav").removeClass("open");
+                $(".hamburger").removeClass("active");
+            });
+            // Close menu when clicking outside
+            $(document).click(function (event) {
+                var $target = $(event.target);
+                if (!$target.closest('.nav').length && !$target.closest('.hamburger').length) {
+                    $(".nav").removeClass("open");
+                    $(".hamburger").removeClass("active");
+                }
+            });
+        });
         // Sticky Nav
         window.addEventListener("scroll", function () {
             header = document.querySelector("header");
